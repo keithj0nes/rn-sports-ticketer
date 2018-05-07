@@ -1,31 +1,19 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
-import HomeScreen from './components/HomeScreen';
-import Second from './components/Second';
+import HomeScreen from './screens/HomeScreen';
+import Second from './screens/Second';
 import { View, Text } from 'react-native';
 
 const Routing = createStackNavigator({
-  Home: {
-    screen: HomeScreen
+    Home: {
+      screen: HomeScreen
+    },
+    Second: {
+      screen: Second
+    }
   },
-  Second: {
-    screen: Second
-  }
-},
-{
-  // initialRouteName: 'Home'
-}
-
-)
-
-// class Routing extends React.Component {
-//   render(){
-//     return (
-//       <View>
-//         <Text>Hello World</Text>
-//       </View>
-//     )
-//   }
-// }
+  {
+    initialRouteName: 'Home'
+  })
 
 export default Routing;

@@ -1,0 +1,57 @@
+{
+  "schedule": [
+    {
+      "gameId": 1901,
+      "month": "October",
+      "day": 5,
+      "dow": "Saturday",
+      "year": 2019,
+      "home": true,
+      "team": "Seattle Metros",
+      "opponent": "Vancouver Canucks",
+      "startTime": "7:00PM",
+      "arena": "Key Arena",
+      "location": {
+        "city": "Seattle",
+        "state": "Washington"
+      },
+      "date": 1570287600
+    },
+    {
+      "gameId": 1902,
+      "month": "October",
+      "day": 6,
+      "dow": "Sunday",
+      "year": 2019,
+      "home": true,
+      "team": "Seattle Metros",
+      "opponent": "Vancouver Canucks",
+      "startTime": "5:00PM",
+      "arena": "Key Arena",
+      "location": {
+        "city": "Seattle",
+        "state": "Washington",
+        "country": "United States"
+      },
+      "date": 1570366800
+    },
+    {
+      "gameId": 1903,
+      "month": "October",
+      "day": 9,
+      "dow": "Wednesday",
+      "year": 2019,
+      "home": false,
+      "team": "Seattle Metros",
+      "opponent": "Vancouver Canucks",
+      "startTime": "7:00PM",
+      "arena": "Rogers Arena",
+      "location": {
+        "city": "Vancouver",
+        "state": "British Columbia",
+        "country": "Canada"
+      },
+      "date": 1570633200
+    }
+  ]
+}
