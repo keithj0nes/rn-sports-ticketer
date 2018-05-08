@@ -17,7 +17,7 @@ class Schedule extends React.Component {
 
         <Button
           key={game.gameId}
-          onPress={()=>{console.log('game pressed!!!')}}
+          onPress={()=>{this.props.navigation.navigate('Second', {game})}}
           style={{
             buttonStyle: [styles.listStyle, {backgroundColor: this.indexIsEven(index) ? '#00937A': '#93C1C9'}],
             textStyle: {color: this.indexIsEven(index) ? 'white': null}

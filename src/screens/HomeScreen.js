@@ -15,13 +15,12 @@ class HomeScreen extends React.Component {
     // },
   }
   render(){
-    console.log('getting here');
     return (
       <View style={{flex: 1, paddingTop: 20, justifyContent: 'center', alignItems: 'center'}}>
         <Text>
           HomeScreen
         </Text>
-        <Schedule />
+        <Schedule {...this.props} />
         <Button title="Go to Second Screen" onPress={() => this.props.navigation.navigate('Second', {info: 'heres some info', id: 41324})}/>
       </View>
     )
