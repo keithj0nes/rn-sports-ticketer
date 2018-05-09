@@ -1,11 +1,13 @@
 import React from 'react';
-import { ScrollView, Button, View, Text, Image, ImageBackground, Dimensions, TouchableOpacity } from 'react-native';
+import { ScrollView, Button, View, Text, TouchableOpacity } from 'react-native';
 import {SlidingPane, SlidingPaneWrapper} from 'react-native-sliding-panes';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import moment from 'moment';
 
+import GameDetailsHeader from '../components/GameDetailsHeader';
 import GameDetails from '../components/GameDetails';
 import SelectSeats from '../components/SelectSeats';
+
 
 class Second extends React.Component {
 
@@ -117,36 +119,7 @@ class Second extends React.Component {
     return (
       <View style={{flex: 1, alignItems: 'center'}}>
 
-        <View style={{height: Dimensions.get('window').height / 2.7, width: '100%'}}>
-          <ImageBackground source={require('../images/fan-background.jpg')} style={{width: '100%', height: '100%'}} >
-
-            <View style={styles.matchupContainer}>
-              <View style={styles.matchupImageStyles}>
-
-                <View style={{width:'33%', alignItems: 'center'}}>
-                  <Image source={require('../images/MetrosLogo.png')} style={{height: 100, width: 68}}/>
-                </View>
-
-                <View style={{width:'33%', alignItems: 'center'}}>
-                  <View style={styles.vsCircle}>
-                    <Text style={{fontSize: 18, color: '#f1f1f1'}}>VS</Text>
-                  </View>
-                </View>
-
-                <View style={{width:'33%', alignItems: 'center'}}>
-                  <Image source={require('../images/CanucksLogo.png')} style={{height: 100, width: 100}}/>
-                </View>
-
-              </View>
-
-              <View style={styles.dateDetails.container}>
-                <Text style={styles.dateDetails.text}>{moment.unix(date).format('dddd, MMM D')}</Text>
-                <Text style={styles.dateDetails.text}>{moment.unix(date).format('h:mm')} @ {arena}</Text>
-              </View>
-
-            </View>
-          </ImageBackground>
-        </View>
+        <GameDetailsHeader game={{date, arena}}/>
 
         <SlidingPane style={{ flex: 1, backgroundColor: 'yellow',borderColor: 'red', borderWidth: '1' }} ref={ (myPane) => this.myPane = myPane }>
           <View>
