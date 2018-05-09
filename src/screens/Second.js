@@ -9,6 +9,13 @@ import SelectSeats from '../components/SelectSeats';
 
 class Second extends React.Component {
 
+  state = {
+    gameActive: true,
+    seatsActive: false,
+    paymentActive: false,
+    confirmActive: false
+  }
+
   componentDidMount() {
     this.pane1.warpCenter();
     this.pane2.warpRight();
@@ -46,8 +53,22 @@ class Second extends React.Component {
          directionalOffsetThreshold: 80
        };
 
-       let navLinkClicked = (text) => {
+       let navLinkClicked = (text, active) => {
          console.log(text, 'TEXT CLICKED');
+         console.log(active);
+         console.log(this.state);
+         this.setState((prev, props) => {
+           console.log(prev, props);
+           let newState = {...prev};
+           for(key in newState){
+             newState[key] = false
+             // console.log(newState[key]);
+           }
+            newState[active] = !this.state[active];
+            console.log(newState, 'ahhh!');
+           return newState
+         })
+
          switch (text) {
            case 'Game Details':
              this.slidingPaneWrapper.setActive(0);
@@ -79,10 +100,10 @@ class Second extends React.Component {
          }
        };
 
-       let renderNavBarButton = (text, additional_styles) => {
-         console.log('text', text);
+       let renderNavBarButton = (text, active, additional_styles) => {
+         // console.log('text', text);
          return  (
-                <TouchableOpacity activeOpacity={0.1} style={ [styles.navLink, additional_styles] } onPress={() => {navLinkClicked(text)}}>
+                <TouchableOpacity activeOpacity={0.1} style={ [styles.navLink, additional_styles] } onPress={() => {navLinkClicked(text, active)}}>
                    <View style={ { flexDirection: 'row' } }>
                      <Text style={styles.navLinkText}>{text}</Text>
                    </View>
@@ -142,10 +163,10 @@ class Second extends React.Component {
                  <View style={{ width: '100%' }}>
                    <View style={styles.navBarBuffer} />
                    <ScrollView horizontal decelerationRate={0} snapToInterval={50} snapToAlignment={"center"}>
-                       { renderNavBarButton('Game Details', { borderRightColor: '#CCCCCC', borderRightWidth: 1 }) }
-                       { renderNavBarButton('Select Seats', { borderRightColor: '#CCCCCC', borderRightWidth: 1 }) }
-                       { renderNavBarButton('Payment Info', { borderRightColor: '#CCCCCC', borderRightWidth: 1 }) }
-                       { renderNavBarButton('Confirm Purchase', {}) }
+                       { renderNavBarButton('Game Details', 'gameActive', { borderRightColor: '#CCCCCC', borderRightWidth: 1, backgroundColor: this.state.gameActive ? 'yellow': null }) }
+                       { renderNavBarButton('Select Seats', 'seatsActive', { borderRightColor: '#CCCCCC', borderRightWidth: 1, backgroundColor: this.state.seatsActive ? 'yellow': null }) }
+                       { renderNavBarButton('Payment Info', 'paymentActive', { borderRightColor: '#CCCCCC', borderRightWidth: 1, backgroundColor: this.state.paymentActive ? 'yellow': null }) }
+                       { renderNavBarButton('Confirm Purchase', 'confirmActive', {backgroundColor: this.state.confirmActive ? 'yellow': null}) }
                    </ScrollView>
                  </View>
                  <SlidingPaneWrapper style={{}} ref={(slidingPaneWrapper) => { this.slidingPaneWrapper = slidingPaneWrapper }}>
