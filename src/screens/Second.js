@@ -105,9 +105,9 @@ class Second extends React.Component {
        let renderNavBarButton = (text, active, additional_styles) => {
          // console.log('text', text);
          return  (
-                <TouchableOpacity activeOpacity={0.1} style={ [styles.navLink, additional_styles] } onPress={() => {navLinkClicked(text, active)}}>
+                <TouchableOpacity activeOpacity={0.1} style={ [styles.navLink, additional_styles.container] } onPress={() => {navLinkClicked(text, active)}}>
                    <View style={ { flexDirection: 'row' } }>
-                     <Text style={styles.navLinkText}>{text}</Text>
+                     <Text style={[styles.navLinkText, additional_styles.text]}>{text}</Text>
                    </View>
                  </TouchableOpacity>
                )
@@ -115,9 +115,9 @@ class Second extends React.Component {
 
 
 
-    const {opponent, date, arena } = this.props.navigation.state.params.game;
+    const { opponent, date, arena } = this.props.navigation.state.params.game;
     return (
-      <View style={{flex: 1, alignItems: 'center'}}>
+      <View style={{flex: 1, alignItems: 'center', backgroundColor: '#fff'}}>
 
         <GameDetailsHeader game={{date, arena}}/>
 
@@ -136,29 +136,29 @@ class Second extends React.Component {
                  <View style={{ width: '100%' }}>
                    <View style={styles.navBarBuffer} />
                    <ScrollView horizontal decelerationRate={0} snapToInterval={50} snapToAlignment={"center"}>
-                       { renderNavBarButton('Game Details', 'gameActive', { borderRightColor: '#CCCCCC', borderRightWidth: 1, backgroundColor: this.state.gameActive ? 'yellow': null }) }
-                       { renderNavBarButton('Select Seats', 'seatsActive', { borderRightColor: '#CCCCCC', borderRightWidth: 1, backgroundColor: this.state.seatsActive ? 'yellow': null }) }
-                       { renderNavBarButton('Payment Info', 'paymentActive', { borderRightColor: '#CCCCCC', borderRightWidth: 1, backgroundColor: this.state.paymentActive ? 'yellow': null }) }
-                       { renderNavBarButton('Confirm Purchase', 'confirmActive', {backgroundColor: this.state.confirmActive ? 'yellow': null}) }
+                       { renderNavBarButton('Game Details', 'gameActive', { container: this.state.gameActive ? styles.navlinkContainerActive : null, text: this.state.gameActive ? styles.navLinkTextActive: null }) }
+                       { renderNavBarButton('Select Seats', 'seatsActive', { container: this.state.seatsActive ? styles.navlinkContainerActive : null, text: this.state.seatsActive ? styles.navLinkTextActive: null}) }
+                       { renderNavBarButton('Payment Info', 'paymentActive', { container: this.state.paymentActive ? styles.navlinkContainerActive : null, text: this.state.paymentActive ? styles.navLinkTextActive: null}) }
+                       { renderNavBarButton('Confirm Purchase', 'confirmActive', {container: this.state.confirmActive ? styles.navlinkContainerActive : null, text: this.state.confirmActive ? styles.navLinkTextActive: null}) }
                    </ScrollView>
                  </View>
                  <SlidingPaneWrapper style={{}} ref={(slidingPaneWrapper) => { this.slidingPaneWrapper = slidingPaneWrapper }}>
 
-                   <SlidingPane style={[{borderColor: '#FF9999', borderWidth: 2}]} ref={ (pane1) => { this.pane1 = pane1} }>
-                     <GameDetails game={this.props.navigation.state.params.game} next={()=>{this.slidingPaneWrapper.setActive(1)}}/>
+                   <SlidingPane style={[{borderColor: '#fff', borderWidth: 2}]} ref={ (pane1) => { this.pane1 = pane1} }>
+                     <GameDetails game={this.props.navigation.state.params.game} next={()=>{this.slidingPaneWrapper.setActive(1); navLinkClicked('Select Seats', 'seatsActive')}}/>
                    </SlidingPane>
 
-                   <SlidingPane style={[{borderColor: '#FF9999', borderWidth: 2}]} ref={ (pane2) => { this.pane2 = pane2} }>
+                   <SlidingPane style={[{borderColor: '#fff', borderWidth: 2}]} ref={ (pane2) => { this.pane2 = pane2} }>
                      <SelectSeats />
                    </SlidingPane>
 
-                   <SlidingPane style={[{borderColor: '#FF9999', borderWidth: 2}]} ref={ (pane3) => { this.pane3 = pane3} }>
+                   <SlidingPane style={[{borderColor: '#fff', borderWidth: 2}]} ref={ (pane3) => { this.pane3 = pane3} }>
                      <View style={styles.container}>
                        <Text style={styles.paneText}>3</Text>
                      </View>
                    </SlidingPane>
 
-                   <SlidingPane style={[{borderColor: '#FF9999', borderWidth: 2}]} ref={ (pane4) => { this.pane4 = pane4} }>
+                   <SlidingPane style={[{borderColor: '#fff', borderWidth: 2}]} ref={ (pane4) => { this.pane4 = pane4} }>
                      <View style={styles.container}>
                        <Text style={styles.paneText}>4</Text>
                      </View>
@@ -183,64 +183,15 @@ class Second extends React.Component {
 
 
 const styles = {
-  matchupContainer: {
-    // backgroundColor: 'red',
-    flex: 1,
-    // opacity: 0.4,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  matchupImageStyles: {
-    flex: 1,
-    flexDirection: 'row',
-    // backgroundColor: 'green',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    width: '100%',
-    paddingTop: 40,
-    paddingBottom: 20,
-    paddingLeft: 20,
-    paddingRight: 20
-  },
-  vsCircle: {
-    height: 50,
-    width: 50,
-    borderRadius: 100,
-    borderWidth: 1,
-    borderColor: '#f1f1f1',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  dateDetails: {
-    container:{
-      flex: 1,
-      alignItems: 'center',
-      // backgroundColor: 'yellow',
-      width: '100%',
-    },
-    text: {
-      fontSize: 20,
-      color: '#fff',
-      // fontFamily: 'StratumNo1Regular'
-    }
-
-  },
-
-
-
-
-
-
-
   container: {
     flex: 1,
     justifyContent: 'center',
     // alignItems: 'center',
-    backgroundColor: '#F8ECC2'
+    // backgroundColor: '#F8ECC2'
   },
   navBarBuffer: {
     height: 20,
-    backgroundColor: '#FFFFFF'
+    // backgroundColor: '#FFFFFF'
   },
   navBar: {
     height: 40,
@@ -257,17 +208,27 @@ const styles = {
     // width: '100%',
     alignItems: 'center'
   },
+  navlinkContainerActive: {
+    borderBottomColor:'#004D2F',
+    borderBottomWidth: 2
+  },
   navLinkText: {
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 30,
     paddingRight: 30,
-    fontSize: 20
+    fontSize: 16,
+    color: '#93C1C9',
+    fontWeight: 'bold'
+  },
+  navLinkTextActive: {
+    color: '#004D2F'
   },
   paneText: {
     fontSize: 22
 }
 
+// { renderNavBarButton('Game Details', 'gameActive', { container: {borderRightColor: '#CCCCCC', borderRightWidth: 1, backgroundColor: this.state.gameActive ? 'yellow': null }, text: this.state.gameActive ? styles.navLinkTextActive: null }) }
 
 
 // <View style={styles.container}>

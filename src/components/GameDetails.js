@@ -9,7 +9,7 @@ class GameDetails extends React.Component {
         <View>
           <Text>{this.props.game.team}</Text>
           <Button defaults onPress={this.props.next}>Purchase tickets</Button>
-          <Text>More Detaisl about game if neccessary</Text>
+          <Text>More details about game if neccessary</Text>
         </View>
       </View>
     )
